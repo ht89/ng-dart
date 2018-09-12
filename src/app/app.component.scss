@@ -1,6 +1,7 @@
 @import '../assets/variables.scss';
 
 .big-input {
+    color: $text;
     background-color: $gray;
     border: 1px solid $gray-dark;
     border-radius: $radius;

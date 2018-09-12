@@ -9,12 +9,10 @@
         font-size: .75rem;
         color: $gray-darker;
     }
-    &__input {
+    &__input.big-input {
         width: 120px;
-        border: 1px solid $gray-dark;
-        border-radius: $radius;
-        text-align: center;
         font-size: 1.125rem;
         font-weight: 500;
+        background-color: #fff;
     }
 }
