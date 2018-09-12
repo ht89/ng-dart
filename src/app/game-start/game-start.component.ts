@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-game-start',
   templateUrl: './game-start.component.html',
-  styleUrls: ['./game-start.component.scss']
+  styleUrls: ['./game-start.component.scss', '../app.component.scss']
 })
 export class GameStartComponent implements OnInit {
 

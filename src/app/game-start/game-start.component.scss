@@ -8,32 +8,9 @@
         align-items: center;
     }
     &__game-point {
-        background-color: $gray;
-        border: 1px solid $gray-dark;
-        border-radius: $radius;
         font-size: 1.875rem;
-        font-weight: 500;
         width: 350px;
         margin-top: $space-30;
-        text-align: center;
-    }
-    ::-webkit-input-placeholder {
-        text-align: center;
-        color: $gray-dark;
-    }
-    :-moz-placeholder {
-        /* Firefox 18- */
-        text-align: center;
-        color: $gray-dark;
-    }
-    ::-moz-placeholder {
-        /* Firefox 19+ */
-        text-align: center;
-        color: $gray-dark;
-    }
-    :-ms-input-placeholder {
-        text-align: center;
-        color: $gray-dark;
     }
     &__btn {
         width: 350px;
