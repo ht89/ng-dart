@@ -1,0 +1,23 @@
+@import '../../../assets/variables.scss';
+
+.player {
+    margin-right: $space-30;
+    &__inner-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .big-input {
+        width: 160px;
+        padding: $space-10 0;
+    }
+    &__name.big-input {
+        font-size: 1.25rem;
+    }
+    &__remaining-score.big-input {
+        background-color: $gray-dark;
+        color: #fff;
+        font-size: 1.5rem;
+        margin-top: 5px;
+    }
+}

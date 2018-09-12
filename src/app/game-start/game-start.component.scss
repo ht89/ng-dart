@@ -1,0 +1,22 @@
+@import '../../assets/variables.scss';
+.game-start {
+    display: flex;
+    justify-content: center;
+    &__inner-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    &__game-point {
+        font-size: 1.875rem;
+        width: 350px;
+        margin-top: $space-30;
+    }
+    &__btn {
+        width: 350px;
+        border-radius: $radius;
+        margin-top: $space-15;
+        font-size: 1.25rem;
+        font-weight: 500;
+    }
+}
