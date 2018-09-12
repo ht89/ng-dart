@@ -1,4 +1,9 @@
 .game-start {
     display: flex;
     justify-content: center;
+    &__inner-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
