@@ -1,0 +1,17 @@
+@import '../../../assets/variables.scss';
+.score {
+    width: 160px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: $space-5;
+    &__number {
+        font-size: .75rem;
+        color: $gray-darker;
+    }
+    &__input {
+        width: 120px;
+        border: 1px solid $gray-dark;
+        border-radius: $radius;
+    }
+}

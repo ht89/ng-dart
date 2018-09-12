@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { GameStartComponent } from './game-start/game-start.component';
 import { PlayersComponent } from './players/players.component';
 import { PlayerComponent } from './players/player/player.component';
+import { ScoreComponent } from './players/score/score.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         GameStartComponent,
         PlayersComponent,
-        PlayerComponent
+        PlayerComponent,
+        ScoreComponent
     ],
     imports: [
         BrowserModule,
