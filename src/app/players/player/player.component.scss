@@ -7,9 +7,16 @@
         flex-direction: column;
         align-items: center;
     }
-    &__name {
-        font-size: 1.25rem;
+    .big-input {
         width: 160px;
         padding: $space-10 0;
+    }
+    &__name.big-input {
+        font-size: 1.25rem;
+    }
+    &__current-score.big-input {
+        background-color: $gray-dark;
+        color: #fff;
+        font-size: 1.5rem;
     }
 }
