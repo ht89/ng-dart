@@ -1,0 +1,10 @@
+@import '../../../assets/variables.scss';
+
+.player {
+    margin-right: $space-30;
+    &__name {
+        font-size: 1.25rem;
+        width: 160px;
+        padding: $space-10 0;
+    }
+}
