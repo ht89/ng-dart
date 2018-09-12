@@ -1,3 +1,7 @@
 <div class="player">
-    <input class="big-input player__name" type="text" [(ngModel)]="name" placeholder="Player {{playerNum}}">
+    <div class="player__inner-container">
+        <input class="big-input player__name" type="text" [(ngModel)]="name" placeholder="Player {{playerNum}}">
+
+        <input class="big-input player__remaining-score" type="text" [(ngModel)]="remainingScore" disabled>
+    </div>
 </div>

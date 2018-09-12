@@ -2,6 +2,11 @@
 
 .player {
     margin-right: $space-30;
+    &__inner-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
     &__name {
         font-size: 1.25rem;
         width: 160px;
