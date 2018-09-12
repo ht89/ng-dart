@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class PlayerComponent implements OnInit {
     @Input() playerNum: number;
 
-    currentScore = 0;
+    remainingScore = 0;
 
     constructor() { }
 
