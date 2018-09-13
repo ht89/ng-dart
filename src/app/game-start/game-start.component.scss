@@ -18,5 +18,8 @@
         margin-top: $space-15;
         font-size: 1.25rem;
         font-weight: 500;
+        &--reset {
+            background-color: #dc3545;
+        }
     }
 }

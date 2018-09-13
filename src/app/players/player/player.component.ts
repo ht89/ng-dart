@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Player } from './player.interface';
 import { Score } from '../score/score.interface';
+import { AppService } from '../../app.service';
 
 @Component({
     selector: 'app-player',
@@ -14,7 +15,7 @@ export class PlayerComponent implements OnInit, OnChanges {
     remainingScore = '0';
     readonly winnerTxt = 'WINNER!';
 
-    constructor() { }
+    constructor(private appService: AppService) { }
 
     ngOnInit() {
     }
@@ -46,6 +47,8 @@ export class PlayerComponent implements OnInit, OnChanges {
 
         if (this.remainingScore === '0') {
             this.remainingScore = this.winnerTxt;
+
+            this.appService.publish('gameStart', { winnerFound: true });
         }
     }
 }

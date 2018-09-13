@@ -15,16 +15,6 @@ export class PlayersComponent implements OnInit {
     constructor(private appService: AppService) { }
 
     ngOnInit() {
-        this.appService.subscribe('players', data => {
-            if (data['gameStarted']) {
-                this.showPlayers = data['gameStarted'];
-            }
-
-            if (data['gameScore']) {
-                this.gameScore = data['gameScore'];
-            }
-        });
-
         this.players = [
             {
                 id: 1,
@@ -48,6 +38,15 @@ export class PlayersComponent implements OnInit {
                 value: null
             });
         }
-    }
 
+        this.appService.subscribe('players', data => {
+            if (data['gameStarted'] !== null) {
+                this.showPlayers = data['gameStarted'];
+            }
+
+            if (data['gameScore']) {
+                this.gameScore = data['gameScore'];
+            }
+        });
+    }
 }
