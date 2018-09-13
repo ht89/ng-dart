@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Score } from './score.interface';
 
 @Component({
     selector: 'app-score',
@@ -9,9 +10,18 @@ export class ScoreComponent implements OnInit {
     @Input() id: number;
     @Input() score: number;
 
+    @Output() updateScore = new EventEmitter<Score>();
+
     constructor() { }
 
     ngOnInit() {
     }
 
+    onScoreChange(event) {
+        console.log(this.score);
+        this.updateScore.emit({
+            id: this.id,
+            score: this.score
+        });
+    }
 }

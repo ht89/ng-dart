@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Player } from './player.interface';
+import { Score } from '../score/score.interface';
 
 @Component({
     selector: 'app-player',
@@ -23,4 +24,7 @@ export class PlayerComponent implements OnInit, OnChanges {
         }
     }
 
+    updatePlayerScore(score: Score) {
+        console.log(score);
+    }
 }

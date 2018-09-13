@@ -1,5 +1,5 @@
 <div class="score">
     <span class="score__id">{{ id }}</span>
 
-    <input class="big-input score__input" type="text" [(ngModel)]="score">
+    <input class="big-input score__input" type="text" [(ngModel)]="score" (change)="onScoreChange($event)">
 </div>
