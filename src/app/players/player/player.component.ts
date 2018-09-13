@@ -51,4 +51,8 @@ export class PlayerComponent implements OnInit, OnChanges {
             this.appService.publish('gameStart', { winnerFound: true });
         }
     }
+
+    deletePlayer() {
+        this.appService.publish('players', { playerDeleted: this.player.id });
+    }
 }

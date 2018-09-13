@@ -18,7 +18,7 @@ export class PlayersComponent implements OnInit {
         this.setDefaultPlayers();
 
         this.appService.subscribe('players', data => {
-            if (data['gameStarted'] !== null) {
+            if (data['gameStarted'] !== undefined) {
                 this.showPlayers = data['gameStarted'];
 
                 if (!data['gameStarted']) {
@@ -28,6 +28,15 @@ export class PlayersComponent implements OnInit {
 
             if (data['gameScore']) {
                 this.gameScore = data['gameScore'];
+            }
+
+            if (data['playerDeleted']) {
+                const deletedPlayer = this.players.findIndex(player => {
+                    return player.id === data['playerDeleted'];
+                });
+                if (deletedPlayer) {
+                    this.players.splice(deletedPlayer, 1);
+                }
             }
         });
     }
