@@ -34,5 +34,14 @@ export class PlayerComponent implements OnInit, OnChanges {
             }
         }
 
+        let totalScore = 0;
+        for (const playerScore of this.player.scores) {
+            if (playerScore.value > 0) {
+                totalScore += Number(playerScore.value);
+            }
+        }
+
+        this.remainingScore = this.gameScore - totalScore;
+
     }
 }
