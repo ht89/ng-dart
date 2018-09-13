@@ -28,10 +28,10 @@ export class GameStartComponent implements OnInit {
 
     init() {
         if (this.startGame) {
-            this.btnTxt = this.gameResetTxt;
-            this.startGame = false;
-
             if (this.gameScore > 0) {
+                this.btnTxt = this.gameResetTxt;
+                this.startGame = false;
+
                 this.appService.publish('players', { gameStarted: true, gameScore: this.gameScore });
             }
         } else {
