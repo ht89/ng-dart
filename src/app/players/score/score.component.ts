@@ -6,7 +6,8 @@ import { Component, OnInit, Input } from '@angular/core';
     styleUrls: ['./score.component.scss', '../../app.component.scss']
 })
 export class ScoreComponent implements OnInit {
-    @Input() num = 0;
+    @Input() id: number;
+    @Input() score: number;
 
     constructor() { }
 
