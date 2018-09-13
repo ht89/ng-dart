@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Player } from './player.interface';
 
 @Component({
     selector: 'app-player',
@@ -6,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
     styleUrls: ['./player.component.scss', '../../app.component.scss']
 })
 export class PlayerComponent implements OnInit {
-    @Input() playerNum: number;
+    @Input() player: Player;
 
     remainingScore = 0;
 

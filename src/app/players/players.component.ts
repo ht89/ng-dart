@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
+import { Player } from './player/player.interface';
 
 @Component({
     selector: 'app-players',
@@ -8,6 +9,7 @@ import { AppService } from '../app.service';
 })
 export class PlayersComponent implements OnInit {
     showPlayers = false;
+    players: Player[] = [];
 
     constructor(private appService: AppService) { }
 
@@ -17,6 +19,19 @@ export class PlayersComponent implements OnInit {
                 this.showPlayers = data['gameStarted'];
             }
         });
+
+        this.players = [
+            {
+                id: 1,
+                name: '',
+                scores: []
+            },
+            {
+                id: 2,
+                name: '',
+                scores: []
+            }
+        ];
     }
 
 }

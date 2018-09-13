@@ -1,6 +1,6 @@
 <div class="player">
     <div class="player__inner-container">
-        <input class="big-input player__name" type="text" [(ngModel)]="name" placeholder="Player {{playerNum}}">
+        <input class="big-input player__name" type="text" [(ngModel)]="player.name" placeholder="Player {{player.name || player.id}}">
 
         <input class="big-input player__remaining-score" type="text" [(ngModel)]="remainingScore" disabled>
 
