@@ -15,6 +15,24 @@ export class PlayersComponent implements OnInit {
     constructor(private appService: AppService) { }
 
     ngOnInit() {
+        this.setDefaultPlayers();
+
+        this.appService.subscribe('players', data => {
+            if (data['gameStarted'] !== null) {
+                this.showPlayers = data['gameStarted'];
+
+                if (!data['gameStarted']) {
+                    this.setDefaultPlayers();
+                }
+            }
+
+            if (data['gameScore']) {
+                this.gameScore = data['gameScore'];
+            }
+        });
+    }
+
+    private setDefaultPlayers() {
         this.players = [
             {
                 id: 1,
@@ -38,15 +56,5 @@ export class PlayersComponent implements OnInit {
                 value: null
             });
         }
-
-        this.appService.subscribe('players', data => {
-            if (data['gameStarted'] !== null) {
-                this.showPlayers = data['gameStarted'];
-            }
-
-            if (data['gameScore']) {
-                this.gameScore = data['gameScore'];
-            }
-        });
     }
 }
