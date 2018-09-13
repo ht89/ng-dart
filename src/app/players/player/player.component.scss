@@ -1,5 +1,4 @@
 @import '../../../assets/variables.scss';
-
 .player {
     margin-right: $space-30;
     &__inner-container {
@@ -20,5 +19,9 @@
         font-size: 1.5rem;
         margin-top: 5px;
         padding: $space-5 0;
+        &.win {
+            background-color: #ffc107;
+            color: black;
+        }
     }
 }

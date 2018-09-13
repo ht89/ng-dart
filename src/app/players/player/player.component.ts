@@ -11,7 +11,8 @@ export class PlayerComponent implements OnInit, OnChanges {
     @Input() player: Player;
     @Input() gameScore: number;
 
-    remainingScore = 0;
+    remainingScore = '0';
+    readonly winnerTxt = 'WINNER!';
 
     constructor() { }
 
@@ -20,7 +21,7 @@ export class PlayerComponent implements OnInit, OnChanges {
 
     ngOnChanges(changes: SimpleChanges) {
         if (changes['gameScore'] && this.gameScore > 0) {
-            this.remainingScore = this.gameScore;
+            this.remainingScore = String(this.gameScore);
         }
     }
 
@@ -41,7 +42,10 @@ export class PlayerComponent implements OnInit, OnChanges {
             }
         }
 
-        this.remainingScore = this.gameScore - totalScore;
+        this.remainingScore = String(this.gameScore - totalScore);
 
+        if (this.remainingScore === '0') {
+            this.remainingScore = this.winnerTxt;
+        }
     }
 }
