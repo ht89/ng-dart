@@ -5,7 +5,7 @@ import { Player } from './player/player.interface';
 @Component({
     selector: 'app-players',
     templateUrl: './players.component.html',
-    styleUrls: ['./players.component.scss']
+    styleUrls: ['./players.component.scss', '../app.component.scss']
 })
 export class PlayersComponent implements OnInit {
     showPlayers = false;

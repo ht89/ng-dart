@@ -14,10 +14,7 @@
     }
     &__btn {
         width: 350px;
-        border-radius: $radius;
         margin-top: $space-15;
-        font-size: 1.25rem;
-        font-weight: 500;
         &--reset {
             background-color: $warning;
         }

@@ -1,5 +1,4 @@
 @import '../assets/variables.scss';
-
 .big-input {
     color: $text;
     background-color: $gray;
@@ -11,21 +10,31 @@
         background-color: #fff;
     }
 }
+
 ::-webkit-input-placeholder {
     text-align: center;
     color: $gray-dark;
 }
+
 :-moz-placeholder {
     /* Firefox 18- */
     text-align: center;
     color: $gray-dark;
 }
+
 ::-moz-placeholder {
     /* Firefox 19+ */
     text-align: center;
     color: $gray-dark;
 }
+
 :-ms-input-placeholder {
     text-align: center;
     color: $gray-dark;
+}
+
+.pure-button-primary {
+    border-radius: $radius;
+    font-size: 1.25rem;
+    font-weight: 500;
 }
