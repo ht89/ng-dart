@@ -57,4 +57,19 @@ export class PlayersComponent implements OnInit {
             });
         }
     }
+
+    addPlayer() {
+        this.players.push({
+            id: this.players.length + 1,
+            name: '',
+            scores: []
+        });
+
+        for (let i = 1; i <= 10; i++) {
+            this.players[this.players.length - 1].scores.push({
+                id: i,
+                value: null
+            });
+        }
+    }
 }
