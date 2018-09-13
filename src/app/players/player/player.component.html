@@ -2,7 +2,7 @@
     <div class="player__inner-container">
         <div class="player__name-container">
             <input class="big-input player__name" type="text" [(ngModel)]="player.name" placeholder="Player {{player.name || player.id}}">
-            <div class="player__delete-btn">x</div>
+            <div *ngIf="player.id > 2" class="player__delete-btn">x</div>
         </div>
 
         <input class="big-input player__remaining-score" [ngClass]="{'win': remainingScore === winnerTxt, 'negative-score': remainingScore < 0}" type="text" [(ngModel)]="remainingScore" disabled>
