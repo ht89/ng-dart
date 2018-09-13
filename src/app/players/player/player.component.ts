@@ -50,7 +50,7 @@ export class PlayerComponent implements OnInit, OnChanges {
             this.remainingScore = this.winnerTxt;
 
             this.appService.publish('gameStart', { winnerFound: true });
-        } else if (score.id === this.player.scores.length) {
+        } else if (this.player.scores.every(this.containScore)) {
             for (let i = 1; i <= 10; i++) {
                 this.player.scores.push({
                     id: score.id * i + 1,
@@ -58,6 +58,10 @@ export class PlayerComponent implements OnInit, OnChanges {
                 });
             }
         }
+    }
+
+    containScore(score) {
+        return score.value > 0;
     }
 
     deletePlayer() {
