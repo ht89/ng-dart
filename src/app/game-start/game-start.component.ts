@@ -18,14 +18,10 @@ export class GameStartComponent implements OnInit {
 
     ngOnInit() {
         this.appService.subscribe('gameStart', data => {
-            if (data['winnerFound'] !== null) {
-                if (data['winnerFound']) {
-                    this.startGame = false;
-                    this.btnTxt = this.gameResetTxt;
-                } else {
-                    this.startGame = true;
-                    this.btnTxt = this.gameStartTxt;
-                }
+            if (data['winnerFound']) {
+                this.startGame = false;
+                this.btnTxt = this.gameResetTxt;
+
             }
         });
     }
