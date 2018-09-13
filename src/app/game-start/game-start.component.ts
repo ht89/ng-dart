@@ -31,8 +31,10 @@ export class GameStartComponent implements OnInit {
     }
 
     init() {
-        console.log(this.startGame);
         if (this.startGame) {
+            this.btnTxt = this.gameResetTxt;
+            this.startGame = false;
+
             if (this.gameScore > 0) {
                 this.appService.publish('players', { gameStarted: true, gameScore: this.gameScore });
             }
