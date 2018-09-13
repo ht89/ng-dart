@@ -7,7 +7,7 @@ import { AppService } from '../app.service';
     styleUrls: ['./game-start.component.scss', '../app.component.scss']
 })
 export class GameStartComponent implements OnInit {
-    gamePoint: number;
+    gameScore: number;
 
     constructor(private appService: AppService) { }
 
@@ -15,8 +15,8 @@ export class GameStartComponent implements OnInit {
     }
 
     start() {
-        if (this.gamePoint > 0) {
-            this.appService.publish('players', { gameStarted: true });
+        if (this.gameScore > 0) {
+            this.appService.publish('players', { gameStarted: true, gameScore: this.gameScore });
         }
     }
 }

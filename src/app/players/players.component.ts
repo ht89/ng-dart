@@ -10,6 +10,7 @@ import { Player } from './player/player.interface';
 export class PlayersComponent implements OnInit {
     showPlayers = false;
     players: Player[] = [];
+    gameScore = 0;
 
     constructor(private appService: AppService) { }
 
@@ -17,6 +18,10 @@ export class PlayersComponent implements OnInit {
         this.appService.subscribe('players', data => {
             if (data['gameStarted']) {
                 this.showPlayers = data['gameStarted'];
+            }
+
+            if (data['gameScore']) {
+                this.gameScore = data['gameScore'];
             }
         });
 
