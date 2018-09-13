@@ -10,7 +10,7 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 })
 export class ScoreComponent implements OnInit {
     @Input() id: number;
-    @Input() score: number;
+    @Input() value: number;
 
     @Output() updateScore = new EventEmitter<Score>();
 
@@ -28,7 +28,7 @@ export class ScoreComponent implements OnInit {
 
                     this.updateScore.emit({
                         id: this.id,
-                        score: this.score
+                        value: this.value
                     });
                 })
             )
@@ -36,6 +36,6 @@ export class ScoreComponent implements OnInit {
     }
 
     onScoreChange() {
-        this.scoreSubject.next(this.score);
+        this.scoreSubject.next(this.value);
     }
 }

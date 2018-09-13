@@ -26,5 +26,13 @@ export class PlayerComponent implements OnInit, OnChanges {
 
     updatePlayerScore(score: Score) {
         console.log(score);
+
+        for (const playerScore of this.player.scores) {
+            if (playerScore.id === score.id) {
+                playerScore.value = score.value;
+                break;
+            }
+        }
+
     }
 }

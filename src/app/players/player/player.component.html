@@ -4,6 +4,6 @@
 
         <input class="big-input player__remaining-score" type="text" [(ngModel)]="remainingScore" disabled>
 
-        <app-score *ngFor="let score of player.scores; let id = index" [score]="score" [id]="id + 1" (updateScore)="updatePlayerScore($event)"></app-score>
+        <app-score *ngFor="let score of player.scores; let id = index" [value]="value" [id]="id + 1" (updateScore)="updatePlayerScore($event)"></app-score>
     </div>
 </div>

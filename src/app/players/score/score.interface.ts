@@ -1,4 +1,4 @@
 export interface Score {
     id: number;
-    score: number;
+    value: number;
 }
