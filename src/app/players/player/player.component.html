@@ -2,7 +2,7 @@
     <div class="player__inner-container">
         <input class="big-input player__name" type="text" [(ngModel)]="player.name" placeholder="Player {{player.name || player.id}}">
 
-        <input class="big-input player__remaining-score" [ngClass]="{'win': remainingScore === winnerTxt}" type="text" [(ngModel)]="remainingScore" disabled>
+        <input class="big-input player__remaining-score" [ngClass]="{'win': remainingScore === winnerTxt, 'negative-score': remainingScore < 0}" type="text" [(ngModel)]="remainingScore" disabled>
 
         <app-score *ngFor="let score of player.scores; let id = index" [value]="value" [id]="id + 1" (updateScore)="updatePlayerScore($event)"></app-score>
     </div>

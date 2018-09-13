@@ -23,5 +23,8 @@
             background-color: #ffc107;
             color: black;
         }
+        &.negative-score {
+            background-color: $warning;
+        }
     }
 }
