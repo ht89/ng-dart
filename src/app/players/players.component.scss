@@ -1,4 +1,14 @@
+@import '../../assets/variables.scss';
+
 .players {
     margin-top: 4.68rem;
     display: flex;
+    &__add-btn {
+        height: 44px;
+        width: 160px;
+        background: #28a745;
+        font-size: 1.25rem;
+        border-radius: $radius;
+        font-weight: 500;
+    }
 }
