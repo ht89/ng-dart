@@ -43,10 +43,12 @@ export class PlayerComponent implements OnInit, OnChanges {
     ngOnChanges(changes: SimpleChanges) {
         if (changes['gameScore'] && this.gameScore > 0) {
             this.remainingScore = this.gameScore;
+
+            this.updatePlayerScore();
         }
     }
 
-    updatePlayerScore(score: Score) {
+    updatePlayerScore(score: Score = {id: 0, value: null}) {
         for (const playerScore of this.player.scores) {
             if (playerScore.id === score.id) {
                 playerScore.value = score.value;

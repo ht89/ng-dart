@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 @Component({
     selector: 'app-game-start',
@@ -8,6 +10,7 @@ import { AppService } from '../app.service';
 })
 export class GameStartComponent implements OnInit {
     gameScore: number;
+    private gameScoreSubject = new Subject<any>();
 
     startGame = true;
     readonly gameStartTxt = 'Start Game';
@@ -17,6 +20,15 @@ export class GameStartComponent implements OnInit {
     constructor(private appService: AppService) { }
 
     ngOnInit() {
+        this.gameScoreSubject
+            .pipe(
+                debounceTime(500),
+                distinctUntilChanged(),
+                map(res => {
+                    this.appService.publish('players', { gameScore: this.gameScore });
+                })
+            )
+            .subscribe();
     }
 
     init() {
@@ -34,5 +46,9 @@ export class GameStartComponent implements OnInit {
 
             this.appService.publish('players', { gameStarted: false });
         }
+    }
+
+    onGameScoreChange() {
+        this.gameScoreSubject.next(this.gameScore);
     }
 }
