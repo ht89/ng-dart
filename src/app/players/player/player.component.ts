@@ -25,8 +25,6 @@ export class PlayerComponent implements OnInit, OnChanges {
 
     ngOnInit() {
         window.addEventListener('scroll', (event) => {
-            console.log(this.hiddenInnerTopContainer.nativeElement.getBoundingClientRect().y);
-
             const hiddenInnerTopContainerScrollPos = this.hiddenInnerTopContainer.nativeElement.getBoundingClientRect().y
                 || this.innerTopContainer.nativeElement.getBoundingClientRect().top;
 
