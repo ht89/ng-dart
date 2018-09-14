@@ -55,7 +55,7 @@ export class PlayersComponent implements OnInit {
             }
         ];
 
-        for (let i = 1; i <= 10; i++) {
+        for (let i = 1; i <= 24; i++) {
             this.players[0].scores.push({
                 id: i,
                 value: null
