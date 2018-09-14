@@ -30,6 +30,7 @@ export class GameStartComponent implements OnInit {
         } else {
             this.btnTxt = this.gameStartTxt;
             this.startGame = true;
+            this.gameScore = null;
 
             this.appService.publish('players', { gameStarted: false });
         }
