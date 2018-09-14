@@ -21,7 +21,7 @@ export class ScoreComponent implements OnInit {
     ngOnInit() {
         this.scoreSubject
             .pipe(
-                debounceTime(300),
+                debounceTime(500),
                 distinctUntilChanged(),
                 map(res => {
                     this.updateScore.emit({
