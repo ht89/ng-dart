@@ -49,8 +49,9 @@ export class PlayerComponent implements OnInit, OnChanges {
         if (Number(this.remainingScore) === 0) {
             this.remainingScore = this.winnerTxt;
 
-            this.appService.publish('gameStart', { winnerFound: true });
-        } else if (this.player.scores.every(this.containScore)) {
+        }
+
+        if (this.player.scores.every(this.containScore)) {
             const index = score.id + 1;
             for (let i = index; i <= index + 10; i++) {
                 this.player.scores.push({
