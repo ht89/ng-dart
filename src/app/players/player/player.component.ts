@@ -32,8 +32,10 @@ export class PlayerComponent implements OnInit, OnChanges {
             if (hiddenInnerTopContainerScrollPos <= 0) {
                 this.innerTopContainer.nativeElement.style.position = 'fixed';
                 this.innerTopContainer.nativeElement.style.top = '0';
+                this.innerTopContainer.nativeElement.style.paddingBottom = '10px';
             } else {
                 this.innerTopContainer.nativeElement.style.position = 'relative';
+                this.innerTopContainer.nativeElement.style.paddingBottom = '0';
             }
         });
     }
