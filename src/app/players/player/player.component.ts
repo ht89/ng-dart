@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, ViewChild, ElementRef } from '@angular/core';
 import { Player } from './player.interface';
 import { Score } from '../score/score.interface';
 import { AppService } from '../../app.service';
@@ -18,9 +18,26 @@ export class PlayerComponent implements OnInit, OnChanges {
     readonly winnerTxt = 'WINNER!';
     isWinner = false;
 
+    @ViewChild('innerTopContainer') innerTopContainer: ElementRef;
+    @ViewChild('hiddenInnerTopContainer') hiddenInnerTopContainer: ElementRef;
+
     constructor(private appService: AppService) { }
 
     ngOnInit() {
+        window.addEventListener('scroll', (event) => {
+            console.log(this.hiddenInnerTopContainer.nativeElement.getBoundingClientRect().y);
+
+            const hiddenInnerTopContainerScrollPos = this.hiddenInnerTopContainer.nativeElement.getBoundingClientRect().y
+                || this.innerTopContainer.nativeElement.getBoundingClientRect().top;
+
+            // when the inner top container is at the top of the page
+            if (hiddenInnerTopContainerScrollPos <= 0) {
+                this.innerTopContainer.nativeElement.style.position = 'fixed';
+                this.innerTopContainer.nativeElement.style.top = '0';
+            } else {
+                this.innerTopContainer.nativeElement.style.position = 'relative';
+            }
+        });
     }
 
     ngOnChanges(changes: SimpleChanges) {
