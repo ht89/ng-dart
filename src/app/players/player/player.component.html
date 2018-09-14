@@ -5,7 +5,7 @@
             <button *ngIf="player.id > 2" class="pure-button pure-button-primary player__delete-btn" (click)="deletePlayer()">x</button>
         </div>
 
-        <input class="big-input player__remaining-score" [ngClass]="{'win': remainingScore === winnerTxt, 'negative-score': +remainingScore < 0}" type="text" [(ngModel)]="remainingScore" disabled>
+        <input class="big-input player__remaining-score" [ngClass]="{'win': isWinner, 'negative-score': remainingScore < 0}" type="text" [(ngModel)]="isWinner ? winnerTxt : remainingScore" disabled>
 
         <app-score *ngFor="let score of player.scores; let id = index" [value]="value" [id]="id + 1" (updateScore)="updatePlayerScore($event)"></app-score>
     </div>
