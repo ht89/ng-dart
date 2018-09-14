@@ -64,7 +64,7 @@ export class PlayerComponent implements OnInit, OnChanges {
     }
 
     containScore(score) {
-        return score.value !== null;
+        return score.value !== null && score.value !== undefined;
     }
 
     deletePlayer() {
