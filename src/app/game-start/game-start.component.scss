@@ -11,6 +11,11 @@
         font-size: 1.875rem;
         width: 350px;
         margin-top: $space-30;
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
     }
     &__btn {
         width: 350px;
