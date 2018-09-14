@@ -53,7 +53,7 @@ export class PlayerComponent implements OnInit, OnChanges {
         }
 
         if (this.player.scores.every(this.containScore)) {
-            const index = score.id + 1;
+            const index = this.player.scores.length + 1;
             for (let i = index; i <= index + 10; i++) {
                 this.player.scores.push({
                     id: i,
