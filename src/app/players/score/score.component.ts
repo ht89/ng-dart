@@ -24,8 +24,6 @@ export class ScoreComponent implements OnInit {
                 debounceTime(300),
                 distinctUntilChanged(),
                 map(res => {
-                    console.log(res);
-
                     this.updateScore.emit({
                         id: this.id,
                         value: this.value
