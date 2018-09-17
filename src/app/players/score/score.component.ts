@@ -53,8 +53,18 @@ export class ScoreComponent implements OnInit {
             if (numbers.length === 2 && formula.length === 1) {
                 if (formula[0] === '+') {
                     this.value = Number(numbers[0]) + Number(numbers[1]);
+
+                    this.updateScore.emit({
+                        id: this.id,
+                        value: this.value
+                    });
                 } else if (formula[0] === '*') {
                     this.value = Number(numbers[0]) * Number(numbers[1]);
+
+                    this.updateScore.emit({
+                        id: this.id,
+                        value: this.value
+                    });
                 }
             }
         }
