@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { Score } from './score.interface';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
@@ -20,6 +20,8 @@ export class ScoreComponent implements OnInit {
 
     private scoreSubject = new Subject<any>();
 
+    @ViewChild('scoreInput') scoreInput: ElementRef;
+
     constructor() { }
 
     ngOnInit() {
@@ -35,6 +37,19 @@ export class ScoreComponent implements OnInit {
                 })
             )
             .subscribe();
+
+        if (this.scoreInput) {
+            this.scoreInput.nativeElement.addEventListener('keydown', (event) => {
+                const tabKey = 9;
+                if (event.keyCode === tabKey) {
+                    if (!this.isNumber(this.value)) {
+                        event.preventDefault();
+
+                        this.calculateScore();
+                    }
+                }
+            }, false);
+        }
     }
 
     onScoreChange() {
@@ -46,7 +61,7 @@ export class ScoreComponent implements OnInit {
     }
 
     calculateScore() {
-        if (this.value.search(/^=[0-9]+(\+|\*){1}/g) !== -1) {
+        if (this.value && this.value.search(/^=[0-9]+(\+|\*){1}/g) !== -1) {
             const numbers = this.value.match(/([0-9]+)/g);
             const formula = this.value.match(/(\+|\*){1}/g);
 
