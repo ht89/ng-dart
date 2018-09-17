@@ -10,7 +10,7 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 })
 export class ScoreComponent implements OnInit {
     @Input() id: number;
-    @Input() value: number;
+    @Input() value: any;
 
     @Input() playerId: number;
 
@@ -39,5 +39,24 @@ export class ScoreComponent implements OnInit {
 
     onScoreChange() {
         this.scoreSubject.next(this.value);
+    }
+
+    private isNumber(n) {
+        return !isNaN(Number(n)) && isFinite(n);
+    }
+
+    calculateScore() {
+        if (this.value.search(/^=[0-9]+(\+|\*){1}/g) !== -1) {
+            const numbers = this.value.match(/([0-9]+)/g);
+            const formula = this.value.match(/(\+|\*){1}/g);
+
+            if (numbers.length === 2 && formula.length === 1) {
+                if (formula[0] === '+') {
+                    this.value = Number(numbers[0]) + Number(numbers[1]);
+                } else if (formula[0] === '*') {
+                    this.value = Number(numbers[0]) * Number(numbers[1]);
+                }
+            }
+        }
     }
 }
