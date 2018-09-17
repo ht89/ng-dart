@@ -41,7 +41,7 @@ export class ScoreComponent implements OnInit {
         this.scoreSubject.next(this.value);
     }
 
-    private isNumber(n) {
+    isNumber(n) {
         return !isNaN(Number(n)) && isFinite(n);
     }
 
