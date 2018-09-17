@@ -12,7 +12,11 @@ export class ScoreComponent implements OnInit {
     @Input() id: number;
     @Input() value: number;
 
+    @Input() playerId: number;
+
     @Output() updateScore = new EventEmitter<Score>();
+
+    @Output() enterScore = new EventEmitter<string>();
 
     private scoreSubject = new Subject<any>();
 

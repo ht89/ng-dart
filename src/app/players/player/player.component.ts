@@ -50,7 +50,7 @@ export class PlayerComponent implements OnInit, OnChanges {
         }
     }
 
-    updatePlayerScore(score: Score = {id: 0, value: null}) {
+    updatePlayerScore(score: Score = { id: 0, value: null }) {
         for (const playerScore of this.player.scores) {
             if (playerScore.id === score.id) {
                 playerScore.value = score.value;
@@ -90,5 +90,12 @@ export class PlayerComponent implements OnInit, OnChanges {
 
     deletePlayer() {
         this.appService.publish('players', { playerDeleted: this.player.id });
+    }
+
+    enterPlayerScore(nextScoreId) {
+        const nextScoreInput = document.querySelector(`.score__input[id=${nextScoreId}]`) as HTMLElement;
+        if (nextScoreInput) {
+            nextScoreInput.focus();
+        }
     }
 }

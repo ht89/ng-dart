@@ -11,6 +11,6 @@
             <input class="big-input player__remaining-score" [ngClass]="{'win': isWinner, 'negative-score': remainingScore < 0}" type="text" [(ngModel)]="isWinner ? winnerTxt : remainingScore" disabled>
         </div>
 
-        <app-score *ngFor="let score of player.scores; let id = index" [value]="value" [id]="id + 1" (updateScore)="updatePlayerScore($event)"></app-score>
+        <app-score *ngFor="let score of player.scores; let id = index" [value]="value" [id]="id + 1" [playerId]="player.id" (updateScore)="updatePlayerScore($event)" (enterScore)="enterPlayerScore($event)"></app-score>
     </div>
 </div>
