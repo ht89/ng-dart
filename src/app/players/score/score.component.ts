@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, Renderer2, OnDestroy } from '@angular/core';
 import { Score } from './score.interface';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
@@ -8,7 +8,7 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
     templateUrl: './score.component.html',
     styleUrls: ['./score.component.scss', '../../app.component.scss']
 })
-export class ScoreComponent implements OnInit {
+export class ScoreComponent implements OnInit, OnDestroy {
     @Input() id: number;
     @Input() value: any;
 
@@ -22,7 +22,9 @@ export class ScoreComponent implements OnInit {
 
     @ViewChild('scoreInput') scoreInput: ElementRef;
 
-    constructor() { }
+    listenToTabKey: any;
+
+    constructor(private renderer: Renderer2) { }
 
     ngOnInit() {
         this.scoreSubject
@@ -39,7 +41,7 @@ export class ScoreComponent implements OnInit {
             .subscribe();
 
         if (this.scoreInput) {
-            this.scoreInput.nativeElement.addEventListener('keydown', (event) => {
+            this.listenToTabKey = this.renderer.listen(this.scoreInput.nativeElement, 'keydown', (event) => {
                 const tabKey = 9;
                 if (event.keyCode === tabKey) {
                     if (!this.isNumber(this.value)) {
@@ -48,8 +50,12 @@ export class ScoreComponent implements OnInit {
                         this.calculateScore();
                     }
                 }
-            }, false);
+            });
         }
+    }
+
+    ngOnDestroy() {
+        this.listenToTabKey();
     }
 
     onScoreChange() {
