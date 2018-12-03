@@ -40,16 +40,14 @@ export class PlayersComponent implements OnInit {
       }
     ];
 
-    for (let i = 1; i <= 24; i++) {
-      this.players[0].scores.push({
-        id: i,
-        value: null
-      });
-      this.players[1].scores.push({
-        id: i,
-        value: null
-      });
-    }
+    this.players.forEach(player => {
+      for (let i = 1; i <= 24; i++) {
+        player.scores.push({
+          id: i,
+          value: null
+        });
+      }
+    });
   }
 
   private displayPlayers(gameStarted: boolean) {
