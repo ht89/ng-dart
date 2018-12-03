@@ -1,5 +1,9 @@
 <div *ngIf="showPlayers" class="players">
-    <app-player *ngFor="let player of players; let i = index" [player]="player" [num]="i + 1" [gameScore]="gameScore"></app-player>
+  <app-player *ngFor="let player of players; let i= index"
+    [player]="player"
+    [num]="i + 1"
+    [gameScore]="gameScore"></app-player>
 
-    <button class="pure-button pure-button-primary players__add-btn" (click)="addPlayer()">Add Players</button>
+  <button class="pure-button pure-button-primary players__add-btn"
+    (click)="addPlayer()">Add Players</button>
 </div>
