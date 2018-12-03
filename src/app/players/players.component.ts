@@ -8,7 +8,7 @@ import { Player } from './player/player.interface';
     styleUrls: ['./players.component.scss', '../app.component.scss']
 })
 export class PlayersComponent implements OnInit {
-    showPlayers = false;
+    playersDisplayed = false;
     players: Player[] = [];
     gameScore = 0;
 
@@ -18,13 +18,7 @@ export class PlayersComponent implements OnInit {
         this.setDefaultPlayers();
 
         this.appService.subscribe('players', data => {
-            if (data['gameStarted'] !== undefined) {
-                this.showPlayers = data['gameStarted'];
-
-                if (!data['gameStarted']) {
-                    this.setDefaultPlayers();
-                }
-            }
+            this.displayPlayers(data['gameStarted']);
 
             if (data['gameScore']) {
                 this.gameScore = data['gameScore'];
@@ -65,6 +59,16 @@ export class PlayersComponent implements OnInit {
                 value: null
             });
         }
+    }
+
+    private displayPlayers(gameStarted: boolean) {
+      if (gameStarted !== undefined) {
+        this.playersDisplayed = gameStarted;
+
+        if (!gameStarted) {
+            this.setDefaultPlayers();
+        }
+    }
     }
 
     addPlayer() {

@@ -1,4 +1,4 @@
-<div *ngIf="showPlayers" class="players">
+<div *ngIf="playersDisplayed" class="players">
   <app-player *ngFor="let player of players; let i= index"
     [player]="player"
     [num]="i + 1"
