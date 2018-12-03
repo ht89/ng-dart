@@ -20,18 +20,9 @@ export class PlayersComponent implements OnInit {
     this.appService.subscribe('players', data => {
       this.displayPlayers(data['gameStarted']);
 
-      if (data['gameScore']) {
-        this.gameScore = data['gameScore'];
-      }
+      this.setGameScore(data['gameScore']);
 
-      if (data['playerDeleted']) {
-        const deletedPlayer = this.players.findIndex(player => {
-          return player.id === data['playerDeleted'];
-        });
-        if (deletedPlayer) {
-          this.players.splice(deletedPlayer, 1);
-        }
-      }
+      this.deletePlayer(data['playerDeleted']);
     });
   }
 
@@ -83,6 +74,22 @@ export class PlayersComponent implements OnInit {
         id: i,
         value: null
       });
+    }
+  }
+
+  deletePlayer(playerId: number) {
+    if (playerId) {
+      const deletedPlayer = this.players.findIndex(player => player.id === playerId);
+
+      if (deletedPlayer) {
+        this.players.splice(deletedPlayer, 1);
+      }
+    }
+  }
+
+  private setGameScore(gameScore: number) {
+    if (gameScore) {
+      this.gameScore = gameScore;
     }
   }
 }
