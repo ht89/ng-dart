@@ -81,9 +81,13 @@ export class ScoreComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   calculateScore() {
-    if (this.value && this.value.search(/^=[0-9]+(\+|\*){1}/g) !== -1) {
-      const numbers = this.value.match(/([0-9]+)/g);
-      const formula = this.value.match(/(\+|\*){1}/g);
+    const calculationRegex = /^=[0-9]+(\+|\*){1}/g;
+    const numbersRegex = /([0-9]+)/g;
+    const formulaRegex = /(\+|\*){1}/g;
+
+    if (this.value && this.value.search(calculationRegex) !== -1) {
+      const numbers = this.value.match(numbersRegex);
+      const formula = this.value.match(formulaRegex);
 
       if (numbers.length === 2 && formula.length === 1) {
         if (formula[0] === '+') {
