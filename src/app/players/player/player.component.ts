@@ -32,7 +32,7 @@ export class PlayerComponent implements OnInit, OnChanges {
     if (changes['gameScore'] && this.gameScore > 0) {
       this.remainingScore = this.gameScore;
 
-      this.updatePlayerScore();
+      this.onScoreInputChange();
     }
   }
 
@@ -53,7 +53,7 @@ export class PlayerComponent implements OnInit, OnChanges {
     }
   }
 
-  updatePlayerScore(score: Score = { id: 0, value: null }) {
+  onScoreInputChange(score: Score = { id: 0, value: null }) {
     for (const playerScore of this.player.scores) {
       if (playerScore.id === score.id) {
         playerScore.value = score.value;
@@ -61,30 +61,49 @@ export class PlayerComponent implements OnInit, OnChanges {
       }
     }
 
+    this.remainingScore = this.calculateRemainingScore(this.player.scores);
+
+    this.isWinner = this.hasAWinner(this.remainingScore);
+
+    this.player.scores = this.addMoreScoreInputs(this.player.scores);
+  }
+
+  calculateRemainingScore(scores: Score[]) {
     let totalScore = 0;
-    for (const playerScore of this.player.scores) {
+
+    for (const playerScore of scores) {
       if (playerScore.value > 0) {
         totalScore += Number(playerScore.value);
       }
     }
 
-    this.remainingScore = this.gameScore - totalScore;
+    return this.gameScore - totalScore;
+  }
 
-    if (this.remainingScore === 0) {
-      this.isWinner = true;
-    } else {
-      this.isWinner = false;
+  hasAWinner(remainingScore: number) {
+    if (remainingScore === 0) {
+      return true;
     }
+    return false;
+  }
 
-    if (this.player.scores.every(this.containScore)) {
-      const index = this.player.scores.length + 1;
+  addMoreScoreInputs(scores: Score[]) {
+    if (scores.every(this.containScore)) {
+      const index = scores.length + 1;
+
+      const scoresClone = [...scores];
+
       for (let i = index; i <= index + 10; i++) {
-        this.player.scores.push({
+        scoresClone.push({
           id: i,
           value: null
         });
       }
+
+      return scoresClone;
     }
+
+    return scores;
   }
 
   containScore(score) {
