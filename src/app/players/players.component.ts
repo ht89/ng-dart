@@ -30,8 +30,6 @@ export class PlayersComponent implements OnInit {
     this.store
       .select(state => state.game)
       .subscribe(data => {
-        console.log(data);
-
         this.gameScore = data.score;
         this.playersDisplayed = data.isStarted;
       });
