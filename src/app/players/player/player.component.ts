@@ -89,11 +89,12 @@ export class PlayerComponent implements OnInit, OnChanges {
 
   addMoreScoreInputs(scores: Score[]) {
     if (scores.every(this.containValidScore)) {
-      const index = scores.length + 1;
+      const startingIndex = scores.length + 1;
+      const endingIndex = startingIndex + 10;
 
       const scoresClone = [...scores];
 
-      for (let i = index; i <= index + 10; i++) {
+      for (let i = startingIndex; i <= endingIndex; i++) {
         scoresClone.push({
           id: i,
           value: null
