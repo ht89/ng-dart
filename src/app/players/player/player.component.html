@@ -5,7 +5,8 @@
     <div class="player__name-container">
       <input class="big-input player__name"
         type="text"
-        [(ngModel)]="player.name" placeholder="Player {{num}}">
+        [(ngModel)]="player.name" 
+        placeholder="Player {{num}}">
       <button *ngIf="player.id> 2"
         class="pure-button pure-button-primary
         player__delete-btn"
@@ -20,7 +21,8 @@
 
   <app-score *ngFor="let score of player.scores; let id= index"
     [value]="value"
-    [id]="id + 1" [playerId]="player.id"
+    [id]="id + 1" 
+    [playerId]="player.id"
     (updateScore)="updatePlayerScore($event)"
     (enterScore)="enterPlayerScore($event)"></app-score>
 </div>
