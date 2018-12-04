@@ -115,7 +115,7 @@ export class PlayerComponent implements OnInit, OnChanges {
     this.appService.publish('players', { playerDeleted: this.player.id });
   }
 
-  enterPlayerScore(nextScoreId) {
+  focusOnNextScoreInput(nextScoreId) {
     const nextScoreInput = document.querySelector(`.score__input[id=${nextScoreId}]`) as HTMLElement;
     if (nextScoreInput) {
       nextScoreInput.focus();
