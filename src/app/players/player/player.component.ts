@@ -9,6 +9,7 @@ import { AppService } from '../../app.service';
   styleUrls: ['./player.component.scss', '../../app.component.scss']
 })
 export class PlayerComponent implements OnInit, OnChanges {
+  @Input() playerNumber: number;
   @Input() player: Player;
   @Input() gameScore: number;
 
