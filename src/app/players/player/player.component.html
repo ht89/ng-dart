@@ -1,16 +1,21 @@
 <div class="player">
-    <div class="player__inner-container">
-        <div #hiddenInnerTopContainer class="player__hidden-inner-top-container"></div>
-
-        <div #innerTopContainer class="player__inner-top-container">
-            <div class="player__name-container">
-                <input class="big-input player__name" type="text" [(ngModel)]="player.name" placeholder="Player {{num}}">
-                <button *ngIf="player.id > 2" class="pure-button pure-button-primary player__delete-btn" (click)="deletePlayer()">x</button>
-            </div>
-    
-            <input class="big-input player__remaining-score" [ngClass]="{'win': isWinner, 'negative-score': remainingScore < 0}" type="text" [(ngModel)]="isWinner ? winnerTxt : remainingScore" disabled>
-        </div>
-
-        <app-score *ngFor="let score of player.scores; let id = index" [value]="value" [id]="id + 1" [playerId]="player.id" (updateScore)="updatePlayerScore($event)" (enterScore)="enterPlayerScore($event)"></app-score>
+  <div #hiddenInnerTopContainer class="player__hidden-inner-top-container"></div>
+  
+  <div #innerTopContainer class="player__inner-top-container">
+    <div class="player__name-container">
+      <input class="big-input player__name" type="text"
+        [(ngModel)]="player.name" placeholder="Player {{num}}">
+      <button *ngIf="player.id> 2" class="pure-button pure-button-primary
+        player__delete-btn" (click)="deletePlayer()">x</button>
     </div>
+
+    <input class="big-input player__remaining-score" [ngClass]="{'win':
+      isWinner, 'negative-score': remainingScore <0}" type="text"
+      [(ngModel)]="isWinner ? winnerTxt : remainingScore" disabled>
+  </div>
+
+  <app-score *ngFor="let score of player.scores; let id= index" [value]="value"
+    [id]="id + 1" [playerId]="player.id"
+    (updateScore)="updatePlayerScore($event)"
+    (enterScore)="enterPlayerScore($event)"></app-score>
 </div>

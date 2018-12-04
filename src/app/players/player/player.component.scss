@@ -1,53 +1,51 @@
 @import '../../../assets/variables.scss';
 .player {
-    margin-right: $space-30;
-    &__inner-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+  margin-right: $space-30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &__inner-top-container {
+    background: linear-gradient(#fff 95%, hsla(0, 0%, 96%, .2));
+  }
+  .big-input {
+    width: 160px;
+  }
+  &__name.big-input {
+    font-size: 1.25rem;
+    padding: $space-10 0;
+  }
+  &__remaining-score.big-input {
+    background-color: $gray-dark;
+    color: #fff;
+    font-size: 1.5rem;
+    margin-top: 5px;
+    padding: $space-5 0;
+    &.win {
+      background-color: #ffc107;
+      color: black;
     }
-    &__inner-top-container {
-        background: linear-gradient(#fff 95%,hsla(0,0%,96%,.2));
+    &.negative-score {
+      background-color: $warning;
     }
-    .big-input {
-        width: 160px;
+  }
+  &__name-container {
+    position: relative;
+  }
+  &__delete-btn {
+    position: absolute;
+    right: -5px;
+    top: -5px;
+    width: 20px;
+    height: 20px;
+    background-color: #647379;
+    color: #fff;
+    text-align: center;
+    line-height: 100%;
+    &.pure-button-primary {
+      border-radius: 50%;
+      padding: 0;
+      font-size: .9375rem;
+      line-height: 20px;
     }
-    &__name.big-input {
-        font-size: 1.25rem;
-        padding: $space-10 0;
-    }
-    &__remaining-score.big-input {
-        background-color: $gray-dark;
-        color: #fff;
-        font-size: 1.5rem;
-        margin-top: 5px;
-        padding: $space-5 0;
-        &.win {
-            background-color: #ffc107;
-            color: black;
-        }
-        &.negative-score {
-            background-color: $warning;
-        }
-    }
-    &__name-container {
-        position: relative;
-    }
-    &__delete-btn {
-        position: absolute;
-        right: -5px;
-        top: -5px;
-        width: 20px;
-        height: 20px;
-        background-color: #647379;
-        color: #fff;
-        text-align: center;
-        line-height: 100%;
-        &.pure-button-primary {
-            border-radius: 50%;
-            padding: 0;
-            font-size: .9375rem;
-            line-height: 20px;
-        }
-    }
+  }
 }
