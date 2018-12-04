@@ -88,7 +88,7 @@ export class PlayerComponent implements OnInit, OnChanges {
   }
 
   addMoreScoreInputs(scores: Score[]) {
-    if (scores.every(this.containScore)) {
+    if (scores.every(this.containValidScore)) {
       const index = scores.length + 1;
 
       const scoresClone = [...scores];
@@ -106,7 +106,7 @@ export class PlayerComponent implements OnInit, OnChanges {
     return scores;
   }
 
-  containScore(score) {
+  containValidScore(score) {
     return score.value !== null && score.value !== undefined;
   }
 
