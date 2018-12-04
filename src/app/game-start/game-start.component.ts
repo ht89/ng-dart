@@ -13,9 +13,9 @@ import { updateScore } from '../game/game.actions';
 })
 export class GameStartComponent implements OnInit {
   gameScore: number;
+  gameStarted = true;
   private gameScoreSubject = new Subject<any>();
 
-  gameStarted = true;
   readonly gameStartTxt = 'Start Game';
   readonly gameResetTxt = 'Reset Game';
   btnTxt = this.gameStartTxt;
