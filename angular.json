@@ -123,5 +123,8 @@
       }
     }
   },
-  "defaultProject": "ng-dart"
+  "defaultProject": "ng-dart",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
