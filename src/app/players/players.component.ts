@@ -22,7 +22,7 @@ export class PlayersComponent implements OnInit {
     this.players$ = this.store
       .select(state => state.players.entities)
       .pipe(
-        map(this.toArray)
+        map(this.appService.toArray)
       );
 
     this.players$
@@ -44,15 +44,6 @@ export class PlayersComponent implements OnInit {
     if (gameScore) {
       this.gameScore = gameScore;
     }
-  }
-
-  private toArray(obj) {
-    if (!obj) {
-      return obj;
-    }
-
-    const keys = Object.keys(obj);
-    return keys.map(key => obj[key]);
   }
 
   private setDefaultPlayers() {
