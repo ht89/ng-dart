@@ -5,7 +5,7 @@
     class="big-input score__input"
     type="text"
     [(ngModel)]="value"
-    [attr.id]="'p' + playerId + 's' + id"
+    [attr.id]="nextScoreInputId"
     (keyup)="onScoreChange()"
     (keyup.enter)="onScoreInputEnter()">
 </div>

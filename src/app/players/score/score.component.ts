@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, Renderer2, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef, Renderer2, OnDestroy, SimpleChanges, OnChanges } from '@angular/core';
 import { Score } from './score.interface';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
@@ -8,7 +8,7 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
   templateUrl: './score.component.html',
   styleUrls: ['./score.component.scss', '../../app.component.scss']
 })
-export class ScoreComponent implements OnInit, OnDestroy {
+export class ScoreComponent implements OnInit, OnChanges, OnDestroy {
   @Input() id: number;
   @Input() value: any;
   @Input() playerId: number;
@@ -19,6 +19,7 @@ export class ScoreComponent implements OnInit, OnDestroy {
   private scoreSubject = new Subject<any>();
 
   @ViewChild('scoreInput') scoreInput: ElementRef;
+  nextScoreInputId = '';
 
   tabKeyListener: any;
 
@@ -49,6 +50,12 @@ export class ScoreComponent implements OnInit, OnDestroy {
           }
         }
       });
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['id'] && changes['playerId'] && this.id && this.playerId) {
+      this.nextScoreInputId = `p${this.playerId}s${this.id}`;
     }
   }
 
