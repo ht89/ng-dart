@@ -3,7 +3,7 @@ import { AppService } from '../app.service';
 import { Player } from './player/player.interface';
 import { Store } from '@ngrx/store';
 import { AppState } from '../app-state';
-import { AddPlayers } from './players.actions';
+import { AddPlayers, AddPlayer } from './players.actions';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -14,6 +14,7 @@ import { map } from 'rxjs/operators';
 export class PlayersComponent implements OnInit {
   playersDisplayed = false;
   players$;
+  numOfPlayers = 0;
   gameScore = 0;
 
   constructor(private appService: AppService,
@@ -26,7 +27,10 @@ export class PlayersComponent implements OnInit {
       );
 
     this.players$
-      .subscribe(data => console.log(data));
+      .subscribe(data => {
+        console.log(data);
+        this.numOfPlayers = data.length;
+      });
 
   }
 
@@ -79,20 +83,22 @@ export class PlayersComponent implements OnInit {
     }
   }
 
-  // addPlayer() {
-  //   this.players.push({
-  //     id: this.players.length + 1,
-  //     name: '',
-  //     scores: []
-  //   });
+  addPlayer() {
+    const player: Player = {
+      id: this.numOfPlayers + 1,
+      name: '',
+      scores: []
+    };
 
-  //   for (let i = 1; i <= 24; i++) {
-  //     this.players[this.players.length - 1].scores.push({
-  //       id: i,
-  //       value: null
-  //     });
-  //   }
-  // }
+    for (let i = 1; i <= 24; i++) {
+      player.scores.push({
+        id: i,
+        value: null
+      });
+    }
+
+    this.store.dispatch(new AddPlayer({ player }));
+  }
 
   // deletePlayer(playerId: number) {
   //   if (playerId) {
