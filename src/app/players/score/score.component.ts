@@ -11,11 +11,9 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 export class ScoreComponent implements OnInit, OnDestroy {
     @Input() id: number;
     @Input() value: any;
-
     @Input() playerId: number;
 
     @Output() changeInput = new EventEmitter<Score>();
-
     @Output() focusOnNextInput = new EventEmitter<string>();
 
     private scoreSubject = new Subject<any>();
