@@ -56,12 +56,21 @@ export class ScoreComponent implements OnInit, OnDestroy {
     this.tabKeyListener();
   }
 
+  isNumber(n) {
+    return !isNaN(Number(n)) && isFinite(n);
+  }
+
   onScoreChange() {
     this.scoreSubject.next(this.value);
   }
 
-  isNumber(n) {
-    return !isNaN(Number(n)) && isFinite(n);
+  onScoreInputEnter() {
+    if (this.isNumber(this.value)) {
+      const nextInputId = `p${this.playerId}s${this.id + 1}`;
+      this.focusOnNextInput.emit(nextInputId);
+    } else {
+      this.calculateScore();
+    }
   }
 
   calculateScore() {

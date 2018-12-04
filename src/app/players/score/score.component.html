@@ -7,7 +7,5 @@
     [(ngModel)]="value"
     [attr.id]="'p' + playerId + 's' + id"
     (keyup)="onScoreChange()"
-    (keyup.enter)="isNumber(value) ?
-    focusOnNextInput.emit('p' + playerId + 's' + (id + 1)) :
-    calculateScore()">
+    (keyup.enter)="onScoreInputEnter()">
 </div>
