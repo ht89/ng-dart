@@ -7,7 +7,7 @@
         type="text"
         [(ngModel)]="player.name"
         placeholder="Player {{playerNumber}}">
-      <button *ngIf="player.id> 2"
+      <button *ngIf="playerNumber > 2"
         class="pure-button pure-button-primary
         player__delete-btn"
         (click)="deletePlayer.emit(player.id)">x</button>

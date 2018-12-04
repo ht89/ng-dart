@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../app-state';
 import { AddPlayers, AddPlayer, DeletePlayer } from './players.actions';
 import { map } from 'rxjs/operators';
+import * as uuidv1 from 'uuid/v1';
 
 @Component({
   selector: 'app-players',
@@ -14,7 +15,6 @@ import { map } from 'rxjs/operators';
 export class PlayersComponent implements OnInit {
   playersDisplayed = false;
   players$;
-  numOfPlayers = 0;
   gameScore = 0;
 
   constructor(private appService: AppService,
@@ -25,13 +25,6 @@ export class PlayersComponent implements OnInit {
       .pipe(
         map(this.appService.toArray)
       );
-
-    this.players$
-      .subscribe(data => {
-        console.log(data);
-        this.numOfPlayers = data.length;
-      });
-
   }
 
   ngOnInit() {
@@ -55,7 +48,7 @@ export class PlayersComponent implements OnInit {
 
     for (let i = 1; i <= 2; i++) {
       const player = {
-        id: i,
+        id: uuidv1(),
         name: '',
         scores: []
       };
@@ -85,7 +78,7 @@ export class PlayersComponent implements OnInit {
 
   addPlayer() {
     const player: Player = {
-      id: this.numOfPlayers + 1,
+      id: uuidv1(),
       name: '',
       scores: []
     };
