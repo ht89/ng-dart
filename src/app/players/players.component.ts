@@ -25,6 +25,14 @@ export class PlayersComponent implements OnInit {
       .pipe(
         map(this.appService.toArray)
       );
+
+    this.store
+      .select(state => state.game)
+      .subscribe(data => {
+        console.log(data);
+
+        this.gameScore = data.score;
+      });
   }
 
   ngOnInit() {
@@ -32,15 +40,7 @@ export class PlayersComponent implements OnInit {
 
     this.appService.subscribe('players', data => {
       this.displayPlayers(data['gameStarted']);
-
-      this.setGameScore(data['gameScore']);
     });
-  }
-
-  private setGameScore(gameScore: number) {
-    if (gameScore) {
-      this.gameScore = gameScore;
-    }
   }
 
   private setDefaultPlayers() {

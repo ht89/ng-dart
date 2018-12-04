@@ -2,6 +2,9 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AppService } from '../app.service';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { AppState } from '../app-state';
+import { Store } from '@ngrx/store';
+import { updateScore } from '../game/game.actions';
 
 @Component({
   selector: 'app-game-start',
@@ -10,6 +13,7 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 })
 export class GameStartComponent implements OnInit {
   gameScore: number;
+  game$;
   private gameScoreSubject = new Subject<any>();
 
   gameStarted = true;
@@ -19,7 +23,17 @@ export class GameStartComponent implements OnInit {
 
   @ViewChild('gameScoreInput') gameScoreInput: ElementRef;
 
-  constructor(private appService: AppService) { }
+  constructor(private appService: AppService,
+    private store: Store<AppState>) {
+
+    this.game$ = this.store
+      .select(state => state.game);
+
+    this.game$.subscribe(data => {
+      console.log(data);
+    });
+
+  }
 
   ngOnInit() {
     this.gameScoreSubject
@@ -27,7 +41,8 @@ export class GameStartComponent implements OnInit {
         debounceTime(500),
         distinctUntilChanged(),
         map(res => {
-          this.appService.publish('players', { gameScore: this.gameScore });
+          // this.appService.publish('players', { gameScore: this.gameScore });
+          this.store.dispatch(updateScore(this.gameScore));
         })
       )
       .subscribe();

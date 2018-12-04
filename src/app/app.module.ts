@@ -11,6 +11,7 @@ import { PlayerComponent } from './players/player/player.component';
 import { ScoreComponent } from './players/score/score.component';
 import { AppService } from './app.service';
 import { playersReducer } from './players/players.reducer';
+import { gameReducer } from './game/game.reducer';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { playersReducer } from './players/players.reducer';
     BrowserModule,
     FormsModule,
     StoreModule.forRoot({
-      players: playersReducer
+      players: playersReducer,
+      game: gameReducer
     }),
     StoreDevtoolsModule.instrument({
       maxAge: 25 // retain the last 25 states
