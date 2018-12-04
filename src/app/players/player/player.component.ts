@@ -71,9 +71,9 @@ export class PlayerComponent implements OnInit, OnChanges {
   calculateRemainingScore(scores: Score[]) {
     let totalScore = 0;
 
-    for (const playerScore of scores) {
-      if (playerScore.value > 0) {
-        totalScore += Number(playerScore.value);
+    for (const score of scores) {
+      if (score.value > 0) {
+        totalScore += Number(score.value);
       }
     }
 
