@@ -63,7 +63,7 @@ export class PlayerComponent implements OnInit, OnChanges {
 
     this.remainingScore = this.calculateRemainingScore(this.player.scores);
 
-    this.isWinner = this.hasAWinner(this.remainingScore);
+    this.isWinner = this.hasWinner(this.remainingScore);
 
     this.player.scores = this.addMoreScoreInputs(this.player.scores);
   }
@@ -80,7 +80,7 @@ export class PlayerComponent implements OnInit, OnChanges {
     return this.gameScore - totalScore;
   }
 
-  hasAWinner(remainingScore: number) {
+  hasWinner(remainingScore: number) {
     if (remainingScore === 0) {
       return true;
     }
