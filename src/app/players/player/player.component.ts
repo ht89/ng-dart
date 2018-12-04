@@ -27,7 +27,7 @@ export class PlayerComponent implements OnInit, OnChanges {
             const hiddenTopContainerScrollPos = this.hiddenTopContainer.nativeElement.getBoundingClientRect().y
                 || this.topContainer.nativeElement.getBoundingClientRect().top;
 
-            // when the inner top container is at the top of the page
+            // when the top container is at the top of the page
             if (hiddenTopContainerScrollPos <= 0) {
                 this.topContainer.nativeElement.style.position = 'fixed';
                 this.topContainer.nativeElement.style.top = '0';
