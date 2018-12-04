@@ -10,7 +10,7 @@
       <button *ngIf="player.id> 2"
         class="pure-button pure-button-primary
         player__delete-btn"
-        (click)="deletePlayer()">x</button>
+        (click)="deletePlayer.emit(player.id)">x</button>
     </div>
 
     <input class="big-input player__remaining-score"
