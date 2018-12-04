@@ -10,7 +10,7 @@
       (keyup)="onGameScoreChange()">
 
     <button class="pure-button pure-button-primary game-start__btn"
-      [ngClass]="{'game-start__btn--reset': !startGame}"
+      [ngClass]="{'game-start__btn--reset': !gameStarted}"
       [disabled]="!gameScore || gameScore <= 0"
       (click)="init()">{{ btnTxt }}</button>
   </div>

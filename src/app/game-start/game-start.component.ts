@@ -12,7 +12,7 @@ export class GameStartComponent implements OnInit {
     gameScore: number;
     private gameScoreSubject = new Subject<any>();
 
-    startGame = true;
+    gameStarted = true;
     readonly gameStartTxt = 'Start Game';
     readonly gameResetTxt = 'Reset Game';
     btnTxt = this.gameStartTxt;
@@ -34,16 +34,16 @@ export class GameStartComponent implements OnInit {
     }
 
     init() {
-        if (this.startGame) {
+        if (this.gameStarted) {
             if (this.gameScore > 0) {
                 this.btnTxt = this.gameResetTxt;
-                this.startGame = false;
+                this.gameStarted = false;
 
                 this.appService.publish('players', { gameStarted: true, gameScore: this.gameScore });
             }
         } else {
             this.btnTxt = this.gameStartTxt;
-            this.startGame = true;
+            this.gameStarted = true;
             this.gameScore = null;
 
             this.gameScoreInput.nativeElement.focus();
