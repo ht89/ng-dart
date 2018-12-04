@@ -13,8 +13,9 @@ import * as uuidv1 from 'uuid/v1';
   styleUrls: ['./players.component.scss', '../app.component.scss']
 })
 export class PlayersComponent implements OnInit {
-  playersDisplayed = false;
   players$;
+
+  playersDisplayed = false;
   gameScore = 0;
 
   constructor(private appService: AppService,
