@@ -30,10 +30,17 @@ export class GameStartComponent implements OnInit {
   ngOnInit() {
     this.gameScoreSubject
       .pipe(
-        debounceTime(1000),
+        debounceTime(500),
         distinctUntilChanged(),
         map(res => {
-          this.store.dispatch(updateGame({ score: this.gameScore }));
+          if (!this.gameStarted) {
+            const game: Game = {
+              score: this.gameScore,
+              isStarted: true
+            };
+
+            this.store.dispatch(updateGame(game));
+          }
         })
       )
       .subscribe();
