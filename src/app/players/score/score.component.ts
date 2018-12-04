@@ -20,7 +20,7 @@ export class ScoreComponent implements OnInit, OnDestroy {
 
   @ViewChild('scoreInput') scoreInput: ElementRef;
 
-  listenToTabKey: any;
+  tabKeyListener: any;
 
   constructor(private renderer: Renderer2) { }
 
@@ -39,7 +39,7 @@ export class ScoreComponent implements OnInit, OnDestroy {
       .subscribe();
 
     if (this.scoreInput) {
-      this.listenToTabKey = this.renderer.listen(this.scoreInput.nativeElement, 'keydown', (event) => {
+      this.tabKeyListener = this.renderer.listen(this.scoreInput.nativeElement, 'keydown', (event) => {
         const tabKey = 9;
         if (event.keyCode === tabKey) {
           if (!this.isNumber(this.value)) {
@@ -53,7 +53,7 @@ export class ScoreComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.listenToTabKey();
+    this.tabKeyListener();
   }
 
   onScoreChange() {
