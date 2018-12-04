@@ -18,26 +18,26 @@ export class PlayerComponent implements OnInit, OnChanges {
     readonly winnerTxt = 'WINNER!';
     isWinner = false;
 
-    @ViewChild('innerTopContainer') innerTopContainer: ElementRef;
-    @ViewChild('hiddenInnerTopContainer') hiddenInnerTopContainer: ElementRef;
+    @ViewChild('topContainer') topContainer: ElementRef;
+    @ViewChild('hiddenTopContainer') hiddenTopContainer: ElementRef;
 
     constructor(private appService: AppService) { }
 
     ngOnInit() {
         window.addEventListener('scroll', (event) => {
-            const hiddenInnerTopContainerScrollPos = this.hiddenInnerTopContainer.nativeElement.getBoundingClientRect().y
-                || this.innerTopContainer.nativeElement.getBoundingClientRect().top;
+            const hiddenTopContainerScrollPos = this.hiddenTopContainer.nativeElement.getBoundingClientRect().y
+                || this.topContainer.nativeElement.getBoundingClientRect().top;
 
             // when the inner top container is at the top of the page
-            if (hiddenInnerTopContainerScrollPos <= 0) {
-                this.innerTopContainer.nativeElement.style.position = 'fixed';
-                this.innerTopContainer.nativeElement.style.top = '0';
-                this.innerTopContainer.nativeElement.style.paddingBottom = '10px';
-                this.innerTopContainer.nativeElement.style.paddingTop = '30px';
+            if (hiddenTopContainerScrollPos <= 0) {
+                this.topContainer.nativeElement.style.position = 'fixed';
+                this.topContainer.nativeElement.style.top = '0';
+                this.topContainer.nativeElement.style.paddingBottom = '10px';
+                this.topContainer.nativeElement.style.paddingTop = '30px';
             } else {
-                this.innerTopContainer.nativeElement.style.position = 'relative';
-                this.innerTopContainer.nativeElement.style.paddingBottom = '0';
-                this.innerTopContainer.nativeElement.style.paddingTop = '0';
+                this.topContainer.nativeElement.style.position = 'relative';
+                this.topContainer.nativeElement.style.paddingBottom = '0';
+                this.topContainer.nativeElement.style.paddingTop = '0';
             }
         });
     }
