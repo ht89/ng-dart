@@ -1,5 +1,5 @@
 <div *ngIf="playersDisplayed" class="players">
-  <app-player *ngFor="let player of players; let i= index"
+  <app-player *ngFor="let player of players$ | async; let i= index"
     [player]="player"
     [gameScore]="gameScore"
     (deletePlayer)="deletePlayer($event)"></app-player>
