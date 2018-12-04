@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { AppState } from '../app-state';
 import { Store } from '@ngrx/store';
-import { updateGame } from '../game/game.actions';
+import { updateScore, updateGameStatus } from '../game/game.actions';
 import { Game } from '../game/game.interface';
 
 @Component({
@@ -33,14 +33,7 @@ export class GameStartComponent implements OnInit {
         debounceTime(500),
         distinctUntilChanged(),
         map(res => {
-          if (!this.gameStarted) {
-            const game: Game = {
-              score: this.gameScore,
-              isStarted: true
-            };
-
-            this.store.dispatch(updateGame(game));
-          }
+          this.store.dispatch(updateScore(this.gameScore));
         })
       )
       .subscribe();
@@ -56,12 +49,7 @@ export class GameStartComponent implements OnInit {
 
   handleStartedGames() {
     if (this.gameScore > 0) {
-      const game: Game = {
-        score: this.gameScore,
-        isStarted: this.gameStarted
-      };
-
-      this.store.dispatch(updateGame(game));
+      this.store.dispatch(updateGameStatus(this.gameStarted));
 
       this.btnTxt = this.gameResetTxt;
       this.gameStarted = false;
@@ -69,7 +57,7 @@ export class GameStartComponent implements OnInit {
   }
 
   handleEndedGames() {
-    this.store.dispatch(updateGame({ isStarted: this.gameStarted }));
+    this.store.dispatch(updateGameStatus(this.gameStarted));
 
     this.btnTxt = this.gameStartTxt;
     this.gameStarted = true;

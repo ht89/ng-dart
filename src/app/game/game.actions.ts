@@ -1,6 +1,11 @@
-import { UPDATE_GAME } from './game.constants';
+import { UPDATE_SCORE, UPDATE_GAME_STATUS } from './game.constants';
 
-export const updateGame = game => ({
-  type: UPDATE_GAME,
-  payload: game
+export const updateScore = score => ({
+  type: UPDATE_SCORE,
+  payload: score
+});
+
+export const updateGameStatus = status => ({
+  type: UPDATE_GAME_STATUS,
+  payload: status
 });
