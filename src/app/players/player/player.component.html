@@ -6,7 +6,7 @@
       <input class="big-input player__name"
         type="text"
         [(ngModel)]="player.name" 
-        placeholder="Player {{num}}">
+        placeholder="Player {{player.id}}">
       <button *ngIf="player.id> 2"
         class="pure-button pure-button-primary
         player__delete-btn"
