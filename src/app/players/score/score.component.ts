@@ -14,9 +14,9 @@ export class ScoreComponent implements OnInit, OnDestroy {
 
     @Input() playerId: number;
 
-    @Output() updateScore = new EventEmitter<Score>();
+    @Output() changeInput = new EventEmitter<Score>();
 
-    @Output() enterScore = new EventEmitter<string>();
+    @Output() focusOnNextInput = new EventEmitter<string>();
 
     private scoreSubject = new Subject<any>();
 
@@ -32,7 +32,7 @@ export class ScoreComponent implements OnInit, OnDestroy {
                 debounceTime(500),
                 distinctUntilChanged(),
                 map(res => {
-                    this.updateScore.emit({
+                    this.changeInput.emit({
                         id: this.id,
                         value: this.value
                     });
@@ -75,14 +75,14 @@ export class ScoreComponent implements OnInit, OnDestroy {
                 if (formula[0] === '+') {
                     this.value = Number(numbers[0]) + Number(numbers[1]);
 
-                    this.updateScore.emit({
+                    this.changeInput.emit({
                         id: this.id,
                         value: this.value
                     });
                 } else if (formula[0] === '*') {
                     this.value = Number(numbers[0]) * Number(numbers[1]);
 
-                    this.updateScore.emit({
+                    this.changeInput.emit({
                         id: this.id,
                         value: this.value
                     });

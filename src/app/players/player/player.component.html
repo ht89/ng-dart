@@ -23,6 +23,6 @@
     [value]="value"
     [id]="id + 1" 
     [playerId]="player.id"
-    (updateScore)="onScoreInputChange($event)"
-    (enterScore)="focusOnNextScoreInput($event)"></app-score>
+    (changeInput)="onScoreInputChange($event)"
+    (focusOnNextInput)="focusOnNextScoreInput($event)"></app-score>
 </div>
