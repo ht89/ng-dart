@@ -21,9 +21,13 @@ export class PlayersComponent implements OnInit {
       this.displayPlayers(data['gameStarted']);
 
       this.setGameScore(data['gameScore']);
-
-      this.deletePlayer(data['playerDeleted']);
     });
+  }
+
+  private setGameScore(gameScore: number) {
+    if (gameScore) {
+      this.gameScore = gameScore;
+    }
   }
 
   private setDefaultPlayers() {
@@ -82,12 +86,6 @@ export class PlayersComponent implements OnInit {
       if (deletedPlayer) {
         this.players.splice(deletedPlayer, 1);
       }
-    }
-  }
-
-  private setGameScore(gameScore: number) {
-    if (gameScore) {
-      this.gameScore = gameScore;
     }
   }
 }
