@@ -13,7 +13,6 @@ import { updateScore } from '../game/game.actions';
 })
 export class GameStartComponent implements OnInit {
   gameScore: number;
-  game$;
   private gameScoreSubject = new Subject<any>();
 
   gameStarted = true;
@@ -25,14 +24,6 @@ export class GameStartComponent implements OnInit {
 
   constructor(private appService: AppService,
     private store: Store<AppState>) {
-
-    this.game$ = this.store
-      .select(state => state.game);
-
-    this.game$.subscribe(data => {
-      console.log(data);
-    });
-
   }
 
   ngOnInit() {
