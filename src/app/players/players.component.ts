@@ -3,7 +3,7 @@ import { AppService } from '../app.service';
 import { Player } from './player/player.interface';
 import { Store } from '@ngrx/store';
 import { AppState } from '../app-state';
-import { AddPlayers, AddPlayer, DeletePlayer } from './players.actions';
+import { AddPlayers, AddPlayer, DeletePlayer, LoadPlayers } from './players.actions';
 import { map } from 'rxjs/operators';
 import * as uuidv1 from 'uuid/v1';
 
@@ -30,18 +30,23 @@ export class PlayersComponent implements OnInit {
     this.store
       .select(state => state.game)
       .subscribe(data => {
-        console.log(data);
-
         this.gameScore = data.score;
-        this.playersDisplayed = data.isStarted;
+        this.displayPlayers(data.isStarted);
       });
   }
 
   ngOnInit() {
-    this.setDefaultPlayers();
   }
 
-  private setDefaultPlayers() {
+  private displayPlayers(gameStarted: boolean) {
+    this.playersDisplayed = gameStarted;
+
+    if (!gameStarted) {
+      this.loadDefaultPlayers();
+    }
+  }
+
+  private loadDefaultPlayers() {
     const players: Player[] = [];
 
     for (let i = 1; i <= 2; i++) {
@@ -61,17 +66,7 @@ export class PlayersComponent implements OnInit {
       players.push(player);
     }
 
-    this.store.dispatch(new AddPlayers({ players }));
-  }
-
-  private displayPlayers(gameStarted: boolean) {
-    if (gameStarted !== undefined) {
-      this.playersDisplayed = gameStarted;
-
-      if (!gameStarted) {
-        this.setDefaultPlayers();
-      }
-    }
+    this.store.dispatch(new LoadPlayers({ players }));
   }
 
   addPlayer() {
