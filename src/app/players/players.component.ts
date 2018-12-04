@@ -32,15 +32,12 @@ export class PlayersComponent implements OnInit {
         console.log(data);
 
         this.gameScore = data.score;
+        this.playersDisplayed = data.isStarted;
       });
   }
 
   ngOnInit() {
     this.setDefaultPlayers();
-
-    this.appService.subscribe('players', data => {
-      this.displayPlayers(data['gameStarted']);
-    });
   }
 
   private setDefaultPlayers() {

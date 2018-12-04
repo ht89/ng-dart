@@ -1,2 +1,2 @@
-export const UPDATE_SCORE = 'UPDATE_SCORE';
+export const UPDATE_GAME = 'UPDATE_GAME';
 

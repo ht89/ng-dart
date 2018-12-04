@@ -4,7 +4,8 @@ import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { AppState } from '../app-state';
 import { Store } from '@ngrx/store';
-import { updateScore } from '../game/game.actions';
+import { updateGame } from '../game/game.actions';
+import { Game } from '../game/game.interface';
 
 @Component({
   selector: 'app-game-start',
@@ -29,11 +30,10 @@ export class GameStartComponent implements OnInit {
   ngOnInit() {
     this.gameScoreSubject
       .pipe(
-        debounceTime(500),
+        debounceTime(1000),
         distinctUntilChanged(),
         map(res => {
-          // this.appService.publish('players', { gameScore: this.gameScore });
-          this.store.dispatch(updateScore(this.gameScore));
+          this.store.dispatch(updateGame({ score: this.gameScore }));
         })
       )
       .subscribe();
@@ -49,21 +49,26 @@ export class GameStartComponent implements OnInit {
 
   handleStartedGames() {
     if (this.gameScore > 0) {
+      const game: Game = {
+        score: this.gameScore,
+        isStarted: this.gameStarted
+      };
+
+      this.store.dispatch(updateGame(game));
+
       this.btnTxt = this.gameResetTxt;
       this.gameStarted = false;
-
-      this.appService.publish('players', { gameStarted: true, gameScore: this.gameScore });
     }
   }
 
   handleEndedGames() {
+    this.store.dispatch(updateGame({ isStarted: this.gameStarted }));
+
     this.btnTxt = this.gameStartTxt;
     this.gameStarted = true;
     this.gameScore = null;
 
     this.gameScoreInput.nativeElement.focus();
-
-    this.appService.publish('players', { gameStarted: false });
   }
 
   onGameScoreChange() {
