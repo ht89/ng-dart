@@ -3,7 +3,7 @@ import { AppService } from '../app.service';
 import { Player } from './player/player.interface';
 import { Store } from '@ngrx/store';
 import { AppState } from '../app-state';
-import { AddPlayers, AddPlayer } from './players.actions';
+import { AddPlayers, AddPlayer, DeletePlayer } from './players.actions';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -100,13 +100,7 @@ export class PlayersComponent implements OnInit {
     this.store.dispatch(new AddPlayer({ player }));
   }
 
-  // deletePlayer(playerId: number) {
-  //   if (playerId) {
-  //     const deletedPlayer = this.players.findIndex(player => player.id === playerId);
-
-  //     if (deletedPlayer) {
-  //       this.players.splice(deletedPlayer, 1);
-  //     }
-  //   }
-  // }
+  deletePlayer(playerId: number) {
+    this.store.dispatch(new DeletePlayer({ id: String(playerId) }));
+  }
 }
