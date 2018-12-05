@@ -35,7 +35,8 @@ export class PlayerComponent implements OnInit, OnChanges {
     if (changes['gameScore'] && this.gameScore > 0) {
       this.remainingScore = this.gameScore;
 
-      this.onScoreInputChange();
+      this.remainingScore = this.calculateRemainingScore(this.player.scores);
+      this.isWinner = this.hasWinner(this.remainingScore);
     }
   }
 
@@ -56,7 +57,7 @@ export class PlayerComponent implements OnInit, OnChanges {
     }
   }
 
-  onScoreInputChange(score: Score = { id: 0, value: null }) {
+  onScoreInputChange(score) {
     for (const playerScore of this.player.scores) {
       if (playerScore.id === score.id) {
         playerScore.value = score.value;
