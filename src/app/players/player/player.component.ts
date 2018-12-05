@@ -33,8 +33,6 @@ export class PlayerComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['gameScore'] && this.gameScore > 0) {
-      this.remainingScore = this.gameScore;
-
       this.remainingScore = this.calculateRemainingScore(this.player.scores);
       this.isWinner = this.hasWinner(this.remainingScore);
     }
